@@ -1,20 +1,30 @@
 /* ---------- VARIABEL WARNA ---------- */
 :root {
-  --primary: #003366;
-  --primary-light: #004c99;
-  --text: #333;
-  --bg: #f8f9fa;
+  --primary: #003366; /* Biru tua Kemenag */
+  --primary-light: #004c99; /* Biru Kemenag lebih terang */
+  --primary-gradient-start: #003366; /* Awal gradien */
+  --primary-gradient-end: #0a5a9e; /* Akhir gradien (biru yang lebih kaya) */
+  --accent: #FFD700; /* Warna aksen emas/kuning */
+
+  --text: #333333;
+  --bg: #f0f2f5; /* Latar belakang lebih lembut */
   --bg-card: #ffffff;
-  --shadow: rgba(0, 0, 0, 0.08); /* Sedikit lebih gelap */
-  --border-radius-base: 8px; /* Variabel untuk konsistensi radius */
+  --shadow-light: rgba(0, 0, 0, 0.08); /* Shadow yang lebih halus */
+  --shadow-medium: rgba(0, 0, 0, 0.15); /* Shadow sedang untuk hover */
+  --border-radius-base: 12px; /* Border radius lebih besar untuk tampilan modern */
 }
 body.dark {
   --primary: #1e88e5;
   --primary-light: #42a5f5;
-  --text: #f1f1f1;
-  --bg: #1a1a1a; /* Background lebih gelap */
-  --bg-card: #2c2c2c; /* Card lebih gelap */
-  --shadow: rgba(255, 255, 255, 0.08); /* Shadow untuk dark mode */
+  --primary-gradient-start: #1a76d2; /* Gradien gelap */
+  --primary-gradient-end: #0e4c8c;
+  --accent: #FFEB3B; /* Aksen kuning untuk dark mode */
+
+  --text: #e0e0e0;
+  --bg: #1a1a1a;
+  --bg-card: #2c2c2c;
+  --shadow-light: rgba(255, 255, 255, 0.08);
+  --shadow-medium: rgba(255, 255, 255, 0.15);
 }
 
 /* ---------- RESET & GLOBAL ---------- */
@@ -29,24 +39,33 @@ body {
   font-family: "Poppins", sans-serif;
   background: var(--bg);
   color: var(--text);
-  line-height: 1.6;
-  transition: background .3s ease-in-out, color .3s ease-in-out;
+  line-height: 1.7; /* Line height sedikit lebih tinggi untuk keterbacaan */
+  transition: background .4s ease-in-out, color .4s ease-in-out;
 }
 a {
   color: var(--primary-light);
   text-decoration: none;
-  transition: opacity .2s ease-in-out, color .2s ease-in-out;
+  transition: color .3s ease-in-out, opacity .2s ease-in-out;
 }
 a:hover {
-  opacity: 0.8;
+  opacity: 0.9;
+  color: var(--primary); /* Perubahan warna saat hover */
 }
 h1, h2, h3 {
   color: var(--primary);
   margin-top: 0;
-  margin-bottom: 20px;
+  margin-bottom: 25px; /* Margin bawah judul section */
+  font-weight: 600; /* Font lebih tebal */
+}
+h2 {
+    font-size: 2.4em; /* Ukuran h2 lebih besar */
+}
+h3 {
+    font-size: 1.8em; /* Ukuran h3 lebih besar */
 }
 p {
-    margin-bottom: 1em;
+    margin-bottom: 1.2em; /* Margin bawah paragraf sedikit lebih besar */
+    line-height: 1.7; /* Konsisten dengan body */
 }
 p:last-of-type {
     margin-bottom: 0;
@@ -55,47 +74,53 @@ p:last-of-type {
 
 /* ---------- HEADER & NAV ---------- */
 header {
-  background: var(--primary);
+  background: linear-gradient(90deg, var(--primary-gradient-start) 0%, var(--primary-gradient-end) 100%); /* Gradien pada header */
   color: #fff;
   position: sticky;
   top: 0;
   z-index: 1000;
-  box-shadow: 0 4px 8px var(--shadow);
+  box-shadow: 0 6px 12px var(--shadow-medium); /* Shadow lebih kuat dan elegan */
 }
 .nav-wrapper {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 15px 25px;
+  padding: 15px 30px; /* Padding sedikit lebih besar */
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 .logo-link img {
-    height: 50px;
+    height: 55px; /* Logo sedikit lebih besar */
     object-fit: contain;
     display: block;
+    transition: transform 0.2s ease-in-out;
+}
+.logo-link:hover img {
+    transform: scale(1.05); /* Efek zoom in pada logo */
 }
 nav {
   display: flex;
-  gap: 25px;
+  gap: 30px; /* Jarak antar menu lebih besar */
   font-weight: 600;
 }
 nav a {
   color: #fff;
-  padding: 8px 0;
+  padding: 10px 0; /* Padding lebih baik untuk area klik */
   position: relative;
+  font-size: 1.05em; /* Ukuran font sedikit lebih besar */
 }
 nav a:hover {
   opacity: 1;
+  color: var(--accent); /* Warna aksen saat hover */
 }
 nav a::after {
     content: '';
     position: absolute;
     left: 0;
-    bottom: -5px;
+    bottom: -8px; /* Posisikan underline lebih rendah */
     width: 0;
-    height: 2px;
-    background-color: #fff;
+    height: 3px; /* Garis underline lebih tebal */
+    background-color: var(--accent); /* Warna aksen untuk underline */
     transition: width 0.3s ease-out;
 }
 nav a:hover::after {
@@ -107,17 +132,18 @@ nav a:hover::after {
 .hamburger {
   display: none;
   flex-direction: column;
-  gap: 6px;
+  gap: 7px; /* Gap lebih besar */
   border: none;
   background: transparent;
   cursor: pointer;
-  padding: 12px;
+  padding: 15px; /* Padding lebih besar */
   z-index: 1001;
 }
 .hamburger span {
-  width: 30px;
-  height: 3px;
+  width: 32px; /* Ukuran span lebih besar */
+  height: 4px; /* Lebih tebal */
   background: #fff;
+  border-radius: 2px; /* Sedikit rounded */
   transition: transform .3s ease-in-out, opacity .3s ease-in-out;
 }
 
@@ -126,30 +152,31 @@ nav a:hover::after {
   nav {
     position: fixed;
     inset: 0 0 0 30%;
-    background: var(--primary);
+    background: linear-gradient(180deg, var(--primary-gradient-start) 0%, var(--primary-gradient-end) 100%); /* Gradien di mobile nav */
     flex-direction: column;
-    padding: 80px 25px 20px;
+    padding: 100px 30px 30px; /* Padding top dan samping lebih besar */
     transform: translateX(100%);
     transition: transform .4s ease-out;
-    box-shadow: -4px 0 8px var(--shadow);
+    box-shadow: -6px 0 12px var(--shadow-medium);
   }
   nav.open {
     transform: translateX(0);
   }
   nav a {
-    padding: 15px 0;
-    font-size: 1.1em;
+    padding: 18px 0; /* Padding vertikal lebih besar di mobile */
+    font-size: 1.2em; /* Font lebih besar di mobile */
   }
   nav a::after {
-      background-color: #fff;
+      background-color: var(--accent); /* Pastikan underline warna aksen di mobile */
+      bottom: -10px;
   }
   .hamburger {
     display: flex;
   }
   /* Hamburger X animation */
-  .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(8px, 8px); }
+  .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(9px, 9px); }
   .hamburger.open span:nth-child(2) { opacity: 0; }
-  .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(8px, -8px); }
+  .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(9px, -9px); }
 }
 @media (max-width: 480px) {
     nav {
@@ -160,58 +187,78 @@ nav a:hover::after {
 
 /* ---------- KONTEN ---------- */
 main {
-  max-width: 900px;
-  margin: 60px auto 80px;
-  padding: 0 20px;
+  max-width: 950px; /* Lebar main lebih besar */
+  margin: 80px auto 100px; /* Margin atas dan bawah lebih besar */
+  padding: 0 25px; /* Padding samping lebih besar */
 }
 section {
   background: var(--bg-card);
   border-radius: var(--border-radius-base);
-  box-shadow: 0 4px 15px var(--shadow);
-  padding: 30px;
-  margin-bottom: 50px;
+  box-shadow: 0 8px 20px var(--shadow-light); /* Shadow lebih lembut dan menyebar */
+  padding: 40px; /* Padding lebih besar */
+  margin-bottom: 60px; /* Jarak antar section lebih besar */
+  transition: transform 0.3s ease-out, box-shadow 0.3s ease-out; /* Transisi untuk section */
+}
+section:hover {
+    transform: translateY(-5px); /* Efek lift saat hover */
+    box-shadow: 0 12px 25px var(--shadow-medium); /* Shadow lebih kuat saat hover */
 }
 section h2 {
-  margin-bottom: 25px;
-  font-size: 2em;
+  margin-bottom: 30px;
+  font-size: 2.6em; /* Ukuran judul lebih besar */
   text-align: center;
+  position: relative;
+  padding-bottom: 15px; /* Untuk garis bawah judul */
+}
+section h2::after { /* Garis bawah elegan untuk judul section */
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 80px; /* Lebar garis */
+    height: 4px; /* Ketebalan garis */
+    background: var(--accent); /* Warna aksen */
+    border-radius: 2px;
 }
 section h3 {
-    margin-top: 30px;
-    margin-bottom: 15px;
-    font-size: 1.5em;
+    margin-top: 35px;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+    color: var(--primary-light); /* Warna sub-judul primary-light */
 }
 ul {
-  padding-left: 25px;
+  padding-left: 30px;
 }
 ul li {
-  margin-bottom: 10px;
+  margin-bottom: 12px; /* Jarak antar list item */
+  font-size: 1.05em; /* Ukuran font list item */
 }
 
 /* galeri */
 .galeri-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-  margin-top: 25px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Ukuran gambar minimal lebih besar */
+  gap: 25px; /* Gap lebih besar */
+  margin-top: 30px;
 }
 .galeri-grid img {
   width: 100%;
   border-radius: var(--border-radius-base);
   cursor: pointer;
-  box-shadow: 0 3px 8px var(--shadow);
+  box-shadow: 0 5px 15px var(--shadow-light);
   transition: transform .3s ease-in-out, box-shadow .3s ease-in-out;
 }
 .galeri-grid img:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 15px var(--shadow);
+  transform: scale(1.08); /* Skala hover lebih jelas */
+  box-shadow: 0 8px 20px var(--shadow-medium);
 }
 
 /* lightbox */
 .lightbox {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.9);
+  background: rgba(0, 0, 0, 0.92); /* Background lebih gelap */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -229,9 +276,9 @@ ul li {
   max-width: 95%;
   max-height: 95%;
   border-radius: var(--border-radius-base);
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7);
-  transform: scale(0.8);
-  transition: transform 0.3s ease-out;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.8); /* Shadow lebih gelap dan menonjol */
+  transform: scale(0.7); /* Mulai dari skala lebih kecil */
+  transition: transform 0.4s ease-out; /* Transisi lebih lambat */
 }
 .lightbox.open img {
   transform: scale(1);
@@ -243,11 +290,10 @@ ul li {
     padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
     height: 0;
     overflow: hidden;
-    margin-top: 25px;
+    margin-top: 30px;
     border-radius: var(--border-radius-base);
-    box-shadow: 0 2px 8px var(--shadow);
-    /* Untuk membatasi tinggi iframe, kita bisa tambahkan max-height pada container ini */
-    max-height: 200px; /* Batasi tinggi container peta */
+    box-shadow: 0 5px 15px var(--shadow-light); /* Shadow untuk peta */
+    max-height: 250px; /* Mengurangi tinggi maksimal sedikit dari sebelumnya 200px */
 }
 .map-container iframe {
     position: absolute;
@@ -260,21 +306,25 @@ ul li {
 
 /* Styling untuk button-link */
 .button-link {
-    display: inline-block; /* Agar bisa diberi padding dan margin */
-    background-color: var(--primary); /* Warna latar belakang dari primary color */
-    color: #fff !important; /* Teks putih, !important untuk menimpa default a:hover */
-    padding: 12px 25px;
-    border-radius: 5px;
+    display: inline-block;
+    background: linear-gradient(90deg, var(--primary) 0%, var(--primary-light) 100%); /* Gradien pada tombol */
+    color: #fff !important;
+    padding: 15px 35px; /* Padding lebih besar */
+    border-radius: 8px; /* Border radius lebih kecil dari base untuk tombol */
     text-decoration: none;
     font-weight: 600;
-    transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
-    margin-top: 15px; /* Jarak dari teks di atasnya */
+    font-size: 1.1em; /* Ukuran font tombol lebih besar */
+    transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out, box-shadow 0.3s ease-in-out;
+    margin-top: 25px; /* Jarak dari teks di atasnya */
+    box-shadow: 0 4px 10px var(--shadow-light); /* Shadow pada tombol */
 }
 
 .button-link:hover {
-    background-color: var(--primary-light); /* Warna hover lebih terang */
-    transform: translateY(-2px); /* Efek sedikit terangkat */
-    opacity: 1; /* Pastikan opacity tidak berubah saat hover */
+    background-color: var(--primary-light); /* Fallback untuk gradien */
+    transform: translateY(-3px); /* Efek sedikit terangkat lebih menonjol */
+    box-shadow: 0 7px 15px var(--shadow-medium); /* Shadow lebih kuat saat hover */
+    opacity: 1;
+    background: linear-gradient(90deg, var(--primary-light) 0%, var(--primary) 100%); /* Arah gradien berubah saat hover */
 }
 
 /* footer */
@@ -282,32 +332,33 @@ footer {
   background: var(--primary);
   color: #fff;
   text-align: center;
-  padding: 25px 15px;
-  margin-top: 80px;
-  font-size: 0.9em;
+  padding: 30px 20px; /* Padding lebih besar */
+  margin-top: 100px; /* Margin atas lebih besar */
+  font-size: 1em; /* Ukuran font footer sedikit lebih besar */
+  box-shadow: 0 -4px 10px var(--shadow-medium); /* Shadow di atas footer */
 }
 
 /* dark-mode toggle */
 .toggle-switch {
   position: fixed;
-  bottom: 25px;
-  right: 25px;
+  bottom: 30px; /* Posisi lebih jauh dari bawah */
+  right: 30px; /* Posisi lebih jauh dari kanan */
   background: var(--primary-light);
   color: #fff;
   border: none;
   border-radius: 50%;
-  width: 55px;
-  height: 55px;
+  width: 60px; /* Ukuran lebih besar */
+  height: 60px; /* Ukuran lebih besar */
   cursor: pointer;
-  box-shadow: 0 5px 10px var(--shadow);
+  box-shadow: 0 6px 12px var(--shadow-medium); /* Shadow lebih kuat */
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 24px;
+  font-size: 26px; /* Ukuran font ikon lebih besar */
   transition: background .3s ease-in-out, transform .2s ease-in-out, box-shadow .3s ease-in-out;
   z-index: 999;
 }
 .toggle-switch:hover {
-  transform: translateY(-3px) scale(1.05);
-  box-shadow: 0 8px 16px var(--shadow);
+  transform: translateY(-4px) scale(1.08); /* Efek hover lebih menonjol */
+  box-shadow: 0 10px 20px var(--shadow-medium);
 }
