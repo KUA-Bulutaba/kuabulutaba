@@ -1,134 +1,313 @@
-/* ---------- GLOBAL ---------- */
+/* ---------- VARIABEL WARNA ---------- */
+:root {
+  --primary: #003366;
+  --primary-light: #004c99;
+  --text: #333;
+  --bg: #f8f9fa;
+  --bg-card: #ffffff;
+  --shadow: rgba(0, 0, 0, 0.08); /* Sedikit lebih gelap */
+  --border-radius-base: 8px; /* Variabel untuk konsistensi radius */
+}
+body.dark {
+  --primary: #1e88e5;
+  --primary-light: #42a5f5;
+  --text: #f1f1f1;
+  --bg: #1a1a1a; /* Background lebih gelap */
+  --bg-card: #2c2c2c; /* Card lebih gelap */
+  --shadow: rgba(255, 255, 255, 0.08); /* Shadow untuk dark mode */
+}
+
+/* ---------- RESET & GLOBAL ---------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
 body {
-    font-family: 'Poppins', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f8f9fa;
-    color: #333;
-    line-height: 1.6;
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  transition: background .3s ease-in-out, color .3s ease-in-out;
 }
-
 a {
-    text-decoration: none;
-    color: #003366;
+  color: var(--primary-light);
+  text-decoration: none;
+  transition: opacity .2s ease-in-out, color .2s ease-in-out;
 }
-
+a:hover {
+  opacity: 0.8;
+}
 h1, h2, h3 {
-    color: #003366;
-    margin-top: 0;
+  color: var(--primary);
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+p {
+    margin-bottom: 1em;
+}
+p:last-of-type {
+    margin-bottom: 0;
 }
 
-/* ---------- HEADER ---------- */
+
+/* ---------- HEADER & NAV ---------- */
 header {
-    background-color: #003366;
-    color: white;
-    padding: 10px 15px 20px; /* lebih tipis di atas */
-    text-align: center;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    position: relative;
+  background: var(--primary);
+  color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 8px var(--shadow);
 }
-
-header img {
-    height: 140px;             /* perbesar logo */
-    display: block;
-    margin: 0 auto -10px auto; /* naikkan, kurangi space bawah */
+.nav-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 15px 25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo-link img {
+    height: 50px;
     object-fit: contain;
+    display: block;
 }
-
-header h1 {
-    font-size: 24px;
-    margin: 10px 0 5px 0;
+nav {
+  display: flex;
+  gap: 25px;
+  font-weight: 600;
 }
-
-header nav {
-    margin-top: 10px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
+nav a {
+  color: #fff;
+  padding: 8px 0;
+  position: relative;
 }
-
-header nav a {
-    color: #fff;
-    font-weight: 600;
-    padding: 6px 12px;
-    border-radius: 6px;
-    transition: background 0.3s;
+nav a:hover {
+  opacity: 1;
 }
-
-header nav a:hover {
-    background-color: rgba(255, 255, 255, 0.2);
+nav a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 0;
+    height: 2px;
+    background-color: #fff;
+    transition: width 0.3s ease-out;
 }
-
-/* ---------- SECTION ---------- */
-section {
-    max-width: 900px;
-    margin: 40px auto;
-    padding: 25px;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-}
-
-section h2 {
-    margin-top: 0;
-    font-size: 22px;
-    border-bottom: 2px solid #00336633;
-    padding-bottom: 5px;
-}
-
-ul {
-    padding-left: 20px;
-}
-
-ul li {
-    margin-bottom: 8px;
-}
-
-/* ---------- GALERI ---------- */
-.galeri-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 15px;
-    margin-top: 20px;
-}
-
-.galeri-grid img {
+nav a:hover::after {
     width: 100%;
-    height: auto;
-    border-radius: 10px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease;
 }
 
+
+/* hamburger */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 12px;
+  z-index: 1001;
+}
+.hamburger span {
+  width: 30px;
+  height: 3px;
+  background: #fff;
+  transition: transform .3s ease-in-out, opacity .3s ease-in-out;
+}
+
+/* mobile nav */
+@media (max-width: 860px) {
+  nav {
+    position: fixed;
+    inset: 0 0 0 30%;
+    background: var(--primary);
+    flex-direction: column;
+    padding: 80px 25px 20px;
+    transform: translateX(100%);
+    transition: transform .4s ease-out;
+    box-shadow: -4px 0 8px var(--shadow);
+  }
+  nav.open {
+    transform: translateX(0);
+  }
+  nav a {
+    padding: 15px 0;
+    font-size: 1.1em;
+  }
+  nav a::after {
+      background-color: #fff;
+  }
+  .hamburger {
+    display: flex;
+  }
+  /* Hamburger X animation */
+  .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(8px, 8px); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(8px, -8px); }
+}
+@media (max-width: 480px) {
+    nav {
+        inset: 0 0 0 0;
+    }
+}
+
+
+/* ---------- KONTEN ---------- */
+main {
+  max-width: 900px;
+  margin: 60px auto 80px;
+  padding: 0 20px;
+}
+section {
+  background: var(--bg-card);
+  border-radius: var(--border-radius-base);
+  box-shadow: 0 4px 15px var(--shadow);
+  padding: 30px;
+  margin-bottom: 50px;
+}
+section h2 {
+  margin-bottom: 25px;
+  font-size: 2em;
+  text-align: center;
+}
+section h3 {
+    margin-top: 30px;
+    margin-bottom: 15px;
+    font-size: 1.5em;
+}
+ul {
+  padding-left: 25px;
+}
+ul li {
+  margin-bottom: 10px;
+}
+
+/* galeri */
+.galeri-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-top: 25px;
+}
+.galeri-grid img {
+  width: 100%;
+  border-radius: var(--border-radius-base);
+  cursor: pointer;
+  box-shadow: 0 3px 8px var(--shadow);
+  transition: transform .3s ease-in-out, box-shadow .3s ease-in-out;
+}
 .galeri-grid img:hover {
-    transform: scale(1.05);
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px var(--shadow);
 }
 
-/* ---------- IFRAME ---------- */
-iframe {
-    border: none;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+/* lightbox */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity .3s ease-in-out, visibility .3s ease-in-out;
+  z-index: 2000;
+  cursor: zoom-out;
+}
+.lightbox.open {
+  visibility: visible;
+  opacity: 1;
+}
+.lightbox img {
+  max-width: 95%;
+  max-height: 95%;
+  border-radius: var(--border-radius-base);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7);
+  transform: scale(0.8);
+  transition: transform 0.3s ease-out;
+}
+.lightbox.open img {
+  transform: scale(1);
 }
 
-/* ---------- RESPONSIVE ---------- */
-@media (max-width: 600px) {
-    header h1 {
-        font-size: 18px;
-    }
+/* Google Maps Container */
+.map-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    height: 0;
+    overflow: hidden;
+    margin-top: 25px;
+    border-radius: var(--border-radius-base);
+    box-shadow: 0 2px 8px var(--shadow);
+    /* Untuk membatasi tinggi iframe, kita bisa tambahkan max-height pada container ini */
+    max-height: 200px; /* Batasi tinggi container peta */
+}
+.map-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
 
-    header nav {
-        gap: 5px;
-    }
+/* Styling untuk button-link */
+.button-link {
+    display: inline-block; /* Agar bisa diberi padding dan margin */
+    background-color: var(--primary); /* Warna latar belakang dari primary color */
+    color: #fff !important; /* Teks putih, !important untuk menimpa default a:hover */
+    padding: 12px 25px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+    margin-top: 15px; /* Jarak dari teks di atasnya */
+}
 
-    header nav a {
-        padding: 4px 8px;
-        font-size: 13px;
-    }
+.button-link:hover {
+    background-color: var(--primary-light); /* Warna hover lebih terang */
+    transform: translateY(-2px); /* Efek sedikit terangkat */
+    opacity: 1; /* Pastikan opacity tidak berubah saat hover */
+}
 
-    section {
-        margin: 20px 10px;
-        padding: 15px;
-    }
+/* footer */
+footer {
+  background: var(--primary);
+  color: #fff;
+  text-align: center;
+  padding: 25px 15px;
+  margin-top: 80px;
+  font-size: 0.9em;
+}
+
+/* dark-mode toggle */
+.toggle-switch {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background: var(--primary-light);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 55px;
+  height: 55px;
+  cursor: pointer;
+  box-shadow: 0 5px 10px var(--shadow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  transition: background .3s ease-in-out, transform .2s ease-in-out, box-shadow .3s ease-in-out;
+  z-index: 999;
+}
+.toggle-switch:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 16px var(--shadow);
 }
