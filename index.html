@@ -6,116 +6,8 @@
     <title>Profil KUA Kecamatan Bulu Taba</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css"
-        body {
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f8f9fa;
-            color: #333;
-            line-height: 1.6;
-        }
-
-        a {
-            text-decoration: none;
-            color: #003366;
-        }
-
-        h1, h2, h3 {
-            color: #003366;
-        }
-
-        header {
-            background-color: #003366;
-            color: white;
-            text-align: center;
-            padding: 30px 15px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        header img {
-            height: 80px;
-            margin-bottom: 10px;
-        }
-
-        header nav {
-            margin-top: 10px;
-        }
-
-        header nav a {
-            color: #fff;
-            margin: 0 10px;
-            font-weight: bold;
-        }
-
-        header nav a:hover {
-            text-decoration: underline;
-        }
-
-        section {
-            max-width: 900px;
-            margin: 40px auto;
-            padding: 20px;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
-
-        ul {
-            padding-left: 20px;
-        }
-
-        ul li {
-            margin-bottom: 8px;
-        }
-
-        .galeri-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .galeri-grid img {
-            width: 100%;
-            height: auto;
-            border-radius: 10px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .galeri-grid img:hover {
-            transform: scale(1.05);
-        }
-
-        iframe {
-            border: none;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        @media (max-width: 600px) {
-            header h1 {
-                font-size: 20px;
-            }
-
-            header nav {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            header nav a {
-                margin: 5px 8px;
-                font-size: 14px;
-            }
-
-            section {
-                margin: 20px 10px;
-                padding: 15px;
-            }
-        }
-    </style>
+    <!-- Hubungkan CSS eksternal -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -124,7 +16,7 @@
         <h1>KANTOR URUSAN AGAMA KECAMATAN BULU TABA</h1>
         <nav>
             <a href="#tentang">Tentang</a> |
-            <a href="#visi">Visi & Misi</a> |
+            <a href="#visi">Visi &amp; Misi</a> |
             <a href="#struktur">Struktur</a> |
             <a href="#kontak">Kontak</a> |
             <a href="#galeri">Galeri</a> |
@@ -173,18 +65,18 @@
 
     <section id="kontak">
         <h2>Kontak</h2>
-        <p>Alamat: Kompleks Yayasan Al Hikmah, Desa Karave, Kecamatan Bulu Taba, Kabupaten Pasangkayu</p>
-        <p>Telepon/HP: 082335301808</p>
-        <p>Email: aldels12571@gmail.com</p>
+        <p><strong>Alamat:</strong> Kompleks Yayasan Al Hikmah, Desa Karave, Kecamatan Bulu Taba, Kabupaten Pasangkayu</p>
+        <p><strong>Telepon/HP:</strong> 082335301808</p>
+        <p><strong>Email:</strong> aldels12571@gmail.com</p>
     </section>
 
     <section id="galeri">
         <h2>Galeri Kantor</h2>
         <div class="galeri-grid">
-            <img src="foto bersama toleransi.jpg" alt="foto bersama">
-            <img src="apel pagi.jpg" alt="apel pagi">
-            <img src="kegiatan pelayanan.jpg" alt="pelayanan urusan pernikahan">
-            <img src="kegiatan pembacaan barzanji.jpg" alt="kegiatan pembacaan barzanji">
+            <img src="foto bersama toleransi.jpg" alt="Foto bersama toleransi">
+            <img src="apel pagi.jpg" alt="Apel pagi">
+            <img src="kegiatan pelayanan.jpg" alt="Pelayanan urusan pernikahan">
+            <img src="kegiatan pembacaan barzanji.jpg" alt="Kegiatan pembacaan barzanji">
         </div>
     </section>
 
@@ -193,9 +85,10 @@
         <p>Silakan isi formulir berikut untuk mengajukan keperluan Anda:</p>
         <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSekV59i49X65ZLRLey9sBKY35ISkUKvoq5NSXKdtMtbIBhNmw/viewform?usp=header" width="100%" height="1000" frameborder="0" marginheight="0" marginwidth="0">Memuat…</iframe>
     </section>
-<footer style="text-align:center; padding:20px; background:#003366; color:white;">
-    &copy; 2025 KUA Kecamatan Bulu Taba | Dibuat oleh Muh Raenaldi
-</footer>
+
+    <footer style="text-align:center; padding:20px; background:#003366; color:white;">
+        &copy; 2025 KUA Kecamatan Bulu Taba | Dibuat oleh Muh Raenaldi
+    </footer>
 
 </body>
 </html>
